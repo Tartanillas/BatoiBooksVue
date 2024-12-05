@@ -26,7 +26,7 @@ export default {
     try {
       await store.populateBooks()
       await store.populateModules()
-    } catch(error) {
+    } catch (error) {
       console.log(error.message);
     }
   }
