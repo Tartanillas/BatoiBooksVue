@@ -29,5 +29,16 @@ export const store = {
     } catch (response) {
       console.log(response.error);
     }
+  },
+  async deleteBook(id) {
+    try {
+      await api.books.delete(id);
+      const index = store.state.books.findIndex(book => book.id === id);
+      if (index !== -1) {
+        store.state.books.splice(index, 1);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }

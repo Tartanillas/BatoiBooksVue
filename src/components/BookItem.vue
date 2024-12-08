@@ -1,10 +1,16 @@
 <script>
+import {store} from "../store"
 export default {
     props: {
         book: {
         type: Object,
         required: true
         }
+    },
+    methods: {
+      deleteBook() {
+        store.deleteBook(this.book.id)
+      }
     }
 };
 </script>
@@ -23,7 +29,7 @@ export default {
         <h5><strong>{{book.price}}€</strong></h5>
         <button class="addCart"><span class="material-icons">add_shopping_cart</span></button>
         <button class="editBook"><span class="material-icons">edit</span></button>
-        <button class="remove"><span class="material-icons">delete</span></button>
+        <button class="remove" @click="deleteBook"><span class="material-icons">delete</span></button>
     </div>
   </div>
 </template>
