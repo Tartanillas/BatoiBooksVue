@@ -14,7 +14,7 @@ import {store} from "../store"
       },
       methods: {
         addBook() {
-          store.addBook(this.book)
+            store.addBook(this.book)
         }
       }
     }

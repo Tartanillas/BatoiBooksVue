@@ -9,7 +9,7 @@ export default {
     },
     methods: {
       deleteBook() {
-        store.deleteBook(this.book.id)
+          store.deleteBook(this.book.id)
       }
     }
 };

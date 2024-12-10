@@ -23,12 +23,8 @@ export default {
     }
   },
   async mounted() {
-    try {
       await store.populateBooks()
       await store.populateModules()
-    } catch (error) {
-      console.log(error.message);
-    }
   }
 }
 </script>
