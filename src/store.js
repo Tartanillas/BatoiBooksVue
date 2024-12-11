@@ -4,7 +4,8 @@ export const store = {
   state: reactive({
     books: [],
     modules: [],
-    messages: []
+    messages: [],
+    booksOnCart: []
   }),
   async populateBooks() {
     try {
@@ -48,5 +49,29 @@ export const store = {
   },
   async deleteMessage(index) {
       store.state.messages.splice(index, 1);
-  }
+  },
+  async editBook(book) {
+    try {
+      await api.books.modify(book.id, book)
+      store.addMessage('Libro editado correctamente')
+    } catch(error) {
+      store.addMessage(error)
+    }
+  },
+  async addBookToCart(book) {
+    try {
+      store.state.booksOnCart.push(book)
+      store.addMessage('Libro con ID: ' + book.id + ' añadido al carrito')
+    } catch (error) {
+      store.addMessage(error)
+    }
+  },
+  async getBook(id) {
+    try {
+      const response = await api.books.getOne(id)
+      console.log(response.data);
+    } catch (error) {
+      store.addMessage(error)
+    }
+  },
 }

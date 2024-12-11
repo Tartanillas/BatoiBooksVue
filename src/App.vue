@@ -22,9 +22,9 @@ export default {
       logoBatoi: logoBatoi,
     }
   },
-  async mounted() {
-      await store.populateBooks()
-      await store.populateModules()
+  mounted() {
+      store.populateBooks()
+      store.populateModules()
   }
 }
 </script>
@@ -35,10 +35,11 @@ export default {
     <img alt="Logo Batoi" class="logo" :src="logoBatoi" width="125" height="125" />
     <app-menu></app-menu>
     <app-messages></app-messages>
-    <book-list></book-list>
+    <router-view></router-view>
+    <!--<book-list></book-list>
     <add-book></add-book>
     <app-cart></app-cart>
-    <about-view></about-view>
+    <about-view></about-view>-->
     <footer>Miguel Ángel Martínez</footer>
   </div>
 </template>

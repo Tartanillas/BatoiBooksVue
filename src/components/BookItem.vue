@@ -9,7 +9,13 @@ export default {
     },
     methods: {
       deleteBook() {
-          store.deleteBook(this.book.id)
+        store.deleteBook(this.book.id)
+      },
+      addToCart() {
+        store.addBookToCart(this.book)
+      },
+      editBook() {
+        this.$router.push({ name: "edit", params: { id: this.book.id } });
       }
     }
 };
@@ -27,8 +33,8 @@ export default {
         <h5>{{book.soldDate || "En venta"}}</h5>
         <h5>{{book.comments}}</h5>
         <h5><strong>{{book.price}}€</strong></h5>
-        <button class="addCart"><span class="material-icons">add_shopping_cart</span></button>
-        <button class="editBook"><span class="material-icons">edit</span></button>
+        <button class="addCart" @click="addToCart"><span class="material-icons">add_shopping_cart</span></button>
+        <button class="editBook" @click="editBook"><span class="material-icons">edit</span></button>
         <button class="remove" @click="deleteBook"><span class="material-icons">delete</span></button>
     </div>
   </div>

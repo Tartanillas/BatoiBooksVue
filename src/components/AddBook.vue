@@ -1,6 +1,9 @@
 <script>
 import {store} from "../store"
     export default {
+      props: {
+        id: String
+      },
       computed: {
         modules() {
           return store.state.modules
@@ -8,14 +11,19 @@ import {store} from "../store"
       },
       data() {
         return {
-          book : {
-          }
+          book: {}
         }
       },
       methods: {
         addBook() {
             store.addBook(this.book)
+        },
+        redirectList() {
+          this.$router.push('/')
         }
+      },
+      mounted() {
+        this.book = store.getBook(this.id)
       }
     }
 </script>
@@ -23,7 +31,7 @@ import {store} from "../store"
 <template>
     <div id="form">
         <h3 id="tituloForm">Añadir libro</h3>
-        <form id="bookForm" method="post" @submit.prevent="addBook" novalidate>
+        <form id="bookForm" method="post" @submit.prevent="addBook" @submit="redirectList" novalidate>
           <div id="divIdLibro" style="display: none;">
             Id: <input type="text" id="id-libro" readonly>
           </div>
