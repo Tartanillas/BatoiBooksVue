@@ -1,5 +1,4 @@
 <script>
-import {store} from "../store"
 export default {
     props: {
         book: {
@@ -7,17 +6,6 @@ export default {
         required: true
         }
     },
-    methods: {
-      deleteBook() {
-        store.deleteBook(this.book.id)
-      },
-      addToCart() {
-        store.addBookToCart(this.book)
-      },
-      editBook() {
-        this.$router.push({ name: "edit", params: { id: this.book.id } });
-      }
-    }
 };
 </script>
 
@@ -26,16 +14,14 @@ export default {
     <img :src="book.photo">
     <div>
         <h5>Libro {{book.id}}</h5>
-        <h5>{{book.moduleCode}}</h5>
+        <h5>{{book.cliteral}}</h5>
         <h5>{{book.publisher}}</h5>
         <h5>{{book.pages}} páginas</h5>
         <h5>Estado: {{book.status}}</h5>
         <h5>{{book.soldDate || "En venta"}}</h5>
         <h5>{{book.comments}}</h5>
         <h5><strong>{{book.price}}€</strong></h5>
-        <button class="addCart" @click="addToCart"><span class="material-icons">add_shopping_cart</span></button>
-        <button class="editBook" @click="editBook"><span class="material-icons">edit</span></button>
-        <button class="remove" @click="deleteBook"><span class="material-icons">delete</span></button>
+        <slot></slot>
     </div>
   </div>
 </template>

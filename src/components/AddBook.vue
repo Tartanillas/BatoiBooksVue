@@ -14,23 +14,42 @@ import {store} from "../store"
           book: {}
         }
       },
+      watch: {
+        id(newValue) {
+          if (!newValue) {
+            this.book = []
+          } else {
+            this.cargarLibro()
+          }
+        },
+      },
       methods: {
         addBook() {
+          if (!this.id) {
             store.addBook(this.book)
+          } else {
+            store.editBook(this.book)
+          }
         },
         redirectList() {
           this.$router.push('/')
+        },
+        async cargarLibro() {
+          if (this.id) {
+            this.book = await store.getBook(this.id)
+        }
         }
       },
       mounted() {
-        this.book = store.getBook(this.id)
-      }
+        this.cargarLibro()
+      },
     }
 </script>
 
 <template>
     <div id="form">
-        <h3 id="tituloForm">Añadir libro</h3>
+        <h3 v-if="!this.id">Añadir libro</h3>
+        <h3 v-else>Editar libro</h3>
         <form id="bookForm" method="post" @submit.prevent="addBook" @submit="redirectList" novalidate>
           <div id="divIdLibro" style="display: none;">
             Id: <input type="text" id="id-libro" readonly>
@@ -79,8 +98,10 @@ import {store} from "../store"
             <textarea id="comments" v-model="book.comments"></textarea>
             <span class="error"></span>
           </div>
-          <button type="submit" id="submitButton">Añadir</button>
-          <button type="reset">Reset</button>
+          <button type="submit" v-if="!this.id">Añadir</button>
+          <button type="submit" v-else>Editar</button>
+          <button type="reset" v-if="!this.id">Reset</button>
+          <button type="button" v-else @click="cargarLibro">Reset datos</button>
         </form>
       </div>
 </template>

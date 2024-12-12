@@ -52,7 +52,12 @@ export const store = {
   },
   async editBook(book) {
     try {
-      await api.books.modify(book.id, book)
+      const response = await api.books.modify(book)
+      const index = store.state.books.findIndex(libro => libro.id === response.data.id)
+      if (index !== -1) {
+        store.state.books.splice(index, 1)
+      }
+      store.state.books.push(book)
       store.addMessage('Libro editado correctamente')
     } catch(error) {
       store.addMessage(error)
@@ -69,9 +74,20 @@ export const store = {
   async getBook(id) {
     try {
       const response = await api.books.getOne(id)
-      console.log(response.data);
+      return response.data
     } catch (error) {
       store.addMessage(error)
     }
   },
+  deteleBookFromCart(id) {
+    try {
+      const index = store.state.booksOnCart.findIndex(book => book.id === id);
+      if (index !== -1) {
+        store.state.booksOnCart.splice(index, 1);
+        store.addMessage('Libro ' + id + 'del carrito correctamente')
+      }
+    } catch (error) {
+      store.addMessage(error)
+    }
+  }
 }
