@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div id="card">
     <img :src="book.photo">
     <div>
         <h5>Libro {{book.id}}</h5>

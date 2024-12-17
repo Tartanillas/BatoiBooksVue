@@ -1,21 +1,19 @@
 <script>
 import {store} from '../store'
+import { useDataStore } from '../stores/store';
+import { mapState, mapActions } from 'pinia';
     export default {
         computed: {
-            messages() {
-                return store.state.messages
-            }
+            ...mapState(useDataStore, ['messages']),
         }, 
         methods: {
-            delMessage(index) {
-                store.deleteMessage(index)
-            }
+            ...mapActions(useDataStore, ['deleteMessage']),
         }
     }
 </script>
 
 <template>
-    <div v-for="(message, index) in messages" class="alert alert-danger alert-dismissible" role="alert" id="messages"> {{message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" v-on:click="delMessage(index)">x</button></div>
+    <div v-for="(message, index) in messages" class="alert alert-danger alert-dismissible" role="alert" id="messages"> {{message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" v-on:click="this.deleteMessage(index)">x</button></div>
 </template>
 
 <style scoped>

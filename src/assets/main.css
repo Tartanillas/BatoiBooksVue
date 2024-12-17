@@ -2,13 +2,13 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 h1, h3 {
   text-align: center;
-  color: #4CAF50;
+  color: #8e3859;
   margin: 10px 0;
 }
 
@@ -16,11 +16,11 @@ h1, h3 {
   display: block;
   margin: 0 auto 20px;
   border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 nav {
-  background-color: #4CAF50;
+  background-color: #8e3859;
   padding: 10px;
 }
 
@@ -55,7 +55,7 @@ nav ul li a:hover {
 }
 
 .alert-danger {
-  background-color: #6d6d6d;
+  background-color: #8e3859;
   color: white;
 }
 
@@ -70,28 +70,31 @@ nav ul li a:hover {
 #form {
   max-width: 600px;
   margin: 20px auto;
-  background: white;
+  background: #2c2c2c;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 #form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #e0e0e0;
 }
 
 #form input, #form select, #form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 5px;
+  background-color: #333;
+  color: #e0e0e0;
 }
 
 #form button {
-  background-color: #4CAF50;
+  background-color: #8e3859;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -101,7 +104,7 @@ nav ul li a:hover {
 }
 
 #form button:hover {
-  background-color: #45a049;
+  background-color: #8e3859;
 }
 
 #list {
@@ -112,39 +115,41 @@ nav ul li a:hover {
   margin: 20px;
 }
 
-book-item {
+#card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
+  background: #2c2c2c;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #8e3859;
   width: 250px;
 }
 
-book-item img {
+#card img {
   max-width: 100%;
   border-radius: 10px;
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #8e3859;
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.50s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: white;
+  color: #8e3859;
 }
 
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #8e3859;
   color: white;
   margin-top: 20px;
 }

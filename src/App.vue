@@ -7,6 +7,8 @@ import AddBook from "./components/AddBook.vue"
 import AppCart from "./components/AppCart.vue"
 import AboutView from "./views/AboutView.vue"
 import { store } from "./store"
+import { useDataStore } from './stores/store';
+import { mapState, mapActions } from 'pinia';
 export default {
   components: {
     AppMenu,
@@ -22,9 +24,12 @@ export default {
       logoBatoi: logoBatoi,
     }
   },
+  methods: {
+    ...mapActions(useDataStore, ['populateBooks', 'populateModules']),
+  },
   mounted() {
-      store.populateBooks()
-      store.populateModules()
+      this.populateBooks()
+      this.populateModules()
   }
 }
 </script>

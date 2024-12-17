@@ -1,13 +1,13 @@
 <script>
 import {store} from "../store"
+import { useDataStore } from '../stores/store';
+import { mapState, mapActions } from 'pinia';
     export default {
       props: {
         id: String
       },
       computed: {
-        modules() {
-          return store.state.modules
-        }
+        ...mapState(useDataStore, ['modules']),
       },
       data() {
         return {
@@ -24,11 +24,12 @@ import {store} from "../store"
         },
       },
       methods: {
+        ...mapActions(useDataStore, ['addBook', 'editBook', 'getBook']),
         addBook() {
           if (!this.id) {
-            store.addBook(this.book)
+            this.addBook(this.book)
           } else {
-            store.editBook(this.book)
+            this.editBook(this.book)
           }
         },
         redirectList() {
@@ -36,7 +37,7 @@ import {store} from "../store"
         },
         async cargarLibro() {
           if (this.id) {
-            this.book = await store.getBook(this.id)
+            this.book = await this.getBook(this.id)
         }
         }
       },
@@ -50,7 +51,7 @@ import {store} from "../store"
     <div id="form">
         <h3 v-if="!this.id">Añadir libro</h3>
         <h3 v-else>Editar libro</h3>
-        <form id="bookForm" method="post" @submit.prevent="addBook" @submit="redirectList" novalidate>
+        <form id="bookForm" method="post" @submit.prevent="this.addBook" @submit="redirectList" novalidate>
           <div id="divIdLibro" style="display: none;">
             Id: <input type="text" id="id-libro" readonly>
           </div>
