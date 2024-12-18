@@ -25,11 +25,13 @@ import { mapState, mapActions } from 'pinia';
       },
       methods: {
         ...mapActions(useDataStore, ['addBook', 'editBook', 'getBook']),
-        addBook() {
+        submitBook() {
           if (!this.id) {
             this.addBook(this.book)
+            this.redirectList()
           } else {
             this.editBook(this.book)
+            this.redirectList()
           }
         },
         redirectList() {
@@ -51,7 +53,7 @@ import { mapState, mapActions } from 'pinia';
     <div id="form">
         <h3 v-if="!this.id">Añadir libro</h3>
         <h3 v-else>Editar libro</h3>
-        <form id="bookForm" method="post" @submit.prevent="this.addBook" @submit="redirectList" novalidate>
+        <form id="bookForm" method="post" @submit.prevent="submitBook" novalidate>
           <div id="divIdLibro" style="display: none;">
             Id: <input type="text" id="id-libro" readonly>
           </div>

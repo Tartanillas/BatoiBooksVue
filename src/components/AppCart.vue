@@ -11,7 +11,7 @@ import BookItem from "./BookItem.vue"
             ...mapState(useDataStore, ['booksOnCart']),
         },
         methods: {
-            ...mapActions(useDataStore, ['deteleBookFromCart']),
+            ...mapActions(useDataStore, ['deteleBookFromCart', 'deleteAllBooksFromCart']),
         }
     }
 </script>
@@ -23,4 +23,6 @@ import BookItem from "./BookItem.vue"
             <button type="button" @click="deteleBookFromCart(book.id)"><span class="material-icons">delete</span></button>
         </book-item>
     </div>
+        <button type="button" @click=""><span class="material-icons">local_atm</span></button>
+        <button type="button" @click="deleteAllBooksFromCart"><span class="material-icons">close</span></button>
 </template>

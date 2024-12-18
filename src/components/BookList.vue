@@ -12,7 +12,7 @@ import BookItem from "./BookItem.vue"
         methods: {
             ...mapActions(useDataStore, ['deleteBook', 'addBookToCart']),
             editarLibro(book) {
-                this.$router.push({name: 'editBook', params: {id: book.id}});
+                this.$router.push({name: 'edit', params: {id: book.id}});
         }
     }
 }
