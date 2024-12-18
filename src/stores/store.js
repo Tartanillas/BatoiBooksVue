@@ -11,7 +11,10 @@ export const useDataStore = defineStore('data', {
         }
     },
     getters: {
-
+        cliteralFromCode: (state) => (code) => state.modules.find(module => module.code == code) || {},
+        totalDeLibros() {
+            return this.books.length
+        }
     },
     actions: {
         async populateBooks() {
@@ -106,6 +109,11 @@ export const useDataStore = defineStore('data', {
             this.booksOnCart = []
             this.updateLocalStorage()
             this.addMessage('Carrito vaciado correctamente')
-        }
+        },
+        makePurchase() {
+            this.booksOnCart = []
+            this.updateLocalStorage()
+            this.addMessage('Compra realizada correctamente')
+        },
     }
 })

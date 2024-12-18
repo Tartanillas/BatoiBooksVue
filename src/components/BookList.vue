@@ -7,18 +7,19 @@ import BookItem from "./BookItem.vue"
             BookItem
         },
         computed: {
-            ...mapState(useDataStore, ['books']),
+            ...mapState(useDataStore, ['books',  'totalDeLibros']),
         },
         methods: {
             ...mapActions(useDataStore, ['deleteBook', 'addBookToCart']),
             editarLibro(book) {
                 this.$router.push({name: 'edit', params: {id: book.id}});
+            }
         }
-    }
 }
 </script>
 
 <template>
+    <h1>Total de libros: {{ totalDeLibros }}</h1>
     <div id="list">
         <book-item v-for="book in books" :key="book.id" :book="book">
         <button class="addCart" @click="addBookToCart(book)"><span class="material-icons">add_shopping_cart</span></button>

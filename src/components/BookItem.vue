@@ -1,10 +1,15 @@
 <script>
+import { useDataStore } from '../stores/store';
+import { mapState } from 'pinia';
 export default {
     props: {
         book: {
         type: Object,
         required: true
         }
+    },
+    computed: {
+      ...mapState(useDataStore, ['cliteralFromCode'])
     },
 };
 </script>
@@ -14,7 +19,7 @@ export default {
     <img :src="book.photo">
     <div>
         <h5>Libro {{book.id}}</h5>
-        <h5>{{book.cliteral}}</h5>
+        <h5>{{cliteralFromCode(book.moduleCode).cliteral || {} }}</h5>
         <h5>{{book.publisher}}</h5>
         <h5>{{book.pages}} páginas</h5>
         <h5>Estado: {{book.status}}</h5>
