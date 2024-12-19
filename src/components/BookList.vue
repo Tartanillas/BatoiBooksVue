@@ -7,7 +7,7 @@ import BookItem from "./BookItem.vue"
             BookItem
         },
         computed: {
-            ...mapState(useDataStore, ['books',  'totalDeLibros']),
+            ...mapState(useDataStore, ['books',  'totalDeLibros', 'bookOnCart']),
         },
         methods: {
             ...mapActions(useDataStore, ['deleteBook', 'addBookToCart']),
@@ -22,7 +22,7 @@ import BookItem from "./BookItem.vue"
     <h1>Total de libros: {{ totalDeLibros }}</h1>
     <div id="list">
         <book-item v-for="book in books" :key="book.id" :book="book">
-        <button class="addCart" @click="addBookToCart(book)"><span class="material-icons">add_shopping_cart</span></button>
+        <button class="addCart" @click="addBookToCart(book)" v-if="!bookOnCart(book.id)"><span class="material-icons">add_shopping_cart</span></button>
         <button class="editBook" @click="editarLibro(book)"><span class="material-icons">edit</span></button>
         <button class="remove" @click="deleteBook(book.id)"><span class="material-icons">delete</span></button>
         </book-item>

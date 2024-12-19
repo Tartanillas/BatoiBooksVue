@@ -7,7 +7,7 @@ import BookItem from "./BookItem.vue"
             BookItem
         },
         computed: {
-            ...mapState(useDataStore, ['booksOnCart']),
+            ...mapState(useDataStore, ['booksOnCart', 'totalDeLibrosEnCarrito']),
         },
         methods: {
             ...mapActions(useDataStore, ['deleteBookFromCart', 'deleteAllBooksFromCart', 'makePurchase']),
@@ -16,7 +16,7 @@ import BookItem from "./BookItem.vue"
 </script>
 
 <template>
-    <h1>Carrito de libros</h1>
+    <h1>Total de libros en el carrito: {{ totalDeLibrosEnCarrito }}</h1>
     <div id="list">
         <book-item v-for="book in booksOnCart" :key="book.id" :book="book">
             <button type="button" @click="deleteBookFromCart(book.id)"><span class="material-icons">delete</span></button>

@@ -6,9 +6,8 @@ import BookList from "./components/BookList.vue"
 import AddBook from "./components/AddBook.vue"
 import AppCart from "./components/AppCart.vue"
 import AboutView from "./views/AboutView.vue"
-import { store } from "./store"
 import { useDataStore } from './stores/store';
-import { mapState, mapActions } from 'pinia';
+import { mapActions } from 'pinia';
 export default {
   components: {
     AppMenu,
@@ -17,7 +16,6 @@ export default {
     AddBook,
     AppCart,
     AboutView,
-    store
   },
   data() {
     return {

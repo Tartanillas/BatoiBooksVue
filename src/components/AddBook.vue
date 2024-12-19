@@ -1,5 +1,4 @@
 <script>
-import {store} from "../store"
 import { useDataStore } from '../stores/store';
 import { mapState, mapActions } from 'pinia';
     export default {
