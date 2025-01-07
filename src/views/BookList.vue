@@ -1,7 +1,7 @@
 <script>
 import { useDataStore } from '../stores/store';
 import { mapState, mapActions } from 'pinia';
-import BookItem from "./BookItem.vue"
+import BookItem from "../components/BookItem.vue"
     export default {
         components: {
             BookItem

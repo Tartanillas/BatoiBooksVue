@@ -2,9 +2,9 @@
 import logoBatoi from "/logoBatoi.png"
 import AppMenu from "./components/AppMenu.vue"
 import AppMessages from "./components/AppMessages.vue"
-import BookList from "./components/BookList.vue"
-import AddBook from "./components/AddBook.vue"
-import AppCart from "./components/AppCart.vue"
+import BookList from "./views/BookList.vue"
+import AddBook from "./views/AddBook.vue"
+import AppCart from "./views/AppCart.vue"
 import AboutView from "./views/AboutView.vue"
 import { useDataStore } from './stores/store';
 import { mapActions } from 'pinia';
