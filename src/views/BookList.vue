@@ -1,6 +1,6 @@
 <script>
-import { useDataStore } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
+import { useDataStore } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
 import BookItem from "../components/BookItem.vue"
     export default {
         components: {
@@ -12,7 +12,7 @@ import BookItem from "../components/BookItem.vue"
         methods: {
             ...mapActions(useDataStore, ['deleteBook', 'addBookToCart']),
             editarLibro(book) {
-                this.$router.push({name: 'edit', params: {id: book.id}});
+                this.$router.push({name: 'edit', params: {id: book.id}})
             }
         }
 }

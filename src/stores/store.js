@@ -39,8 +39,9 @@ export const useDataStore = defineStore('data', {
         },
         async addBook(book) {
             try {
-                book.userId = 8
-                if(this.bookByUserAndModule(book.userId, book.moduleCode)) {
+                book.userId = 9
+                const exists = await this.bookByUserAndModule(book.userId, book.moduleCode)
+                if (exists) {
                     this.addMessage('Ya tienes un libro con ese módulo', 'error')
                     return false
                 } else {
@@ -49,15 +50,15 @@ export const useDataStore = defineStore('data', {
                     this.addMessage('Libro añadido correctamente', 'success')
                 }
             } catch (error) {
-                this.addMessage(error, 'error')
+                this.addMessage(error.message, 'error')
             }
         },
         async deleteBook(id) {
             try {
-                await api.books.delete(id);
-                const index = this.books.findIndex(book => book.id === id);
+                await api.books.delete(id)
+                const index = this.books.findIndex(book => book.id === id)
                 if (index !== -1) {
-                    this.books.splice(index, 1);
+                    this.books.splice(index, 1)
                     this.addMessage('Libro borrado correctamente', 'success')
                 }
             } catch (error) {
@@ -65,10 +66,10 @@ export const useDataStore = defineStore('data', {
             }
         },
         async addMessage(message, type) {
-            this.messages.push({ text: message, type });
+            this.messages.push({ text: message, type })
         },
         async deleteMessage(index) {
-            this.messages.splice(index, 1);
+            this.messages.splice(index, 1)
         },
         async editBook(book) {
             try {
@@ -102,9 +103,9 @@ export const useDataStore = defineStore('data', {
         },
         deleteBookFromCart(id) {
             try {
-                const index = this.booksOnCart.findIndex(book => book.id === id);
+                const index = this.booksOnCart.findIndex(book => book.id === id)
                 if (index !== -1) {
-                    this.booksOnCart.splice(index, 1);
+                    this.booksOnCart.splice(index, 1)
                     this.updateLocalStorage()
                     this.addMessage('Libro con ID: ' + id + ' eliminado del carrito', 'success')
                 }
@@ -113,7 +114,7 @@ export const useDataStore = defineStore('data', {
             }
         },
         updateLocalStorage() {
-            localStorage.setItem('booksOnCart', JSON.stringify(this.booksOnCart));
+            localStorage.setItem('booksOnCart', JSON.stringify(this.booksOnCart))
         },
         deleteAllBooksFromCart() {
             this.booksOnCart = []
@@ -131,7 +132,9 @@ export const useDataStore = defineStore('data', {
                 return response.data.length > 0
             } catch (error) {
                 this.addMessage(error, 'error')
+                return false
             }
         }
+        
     }
 })

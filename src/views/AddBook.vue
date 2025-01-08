@@ -1,8 +1,8 @@
 <script>
-import { useDataStore } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
-import { Form, Field, ErrorMessage } from "vee-validate";
-import * as yup from 'yup';
+import { useDataStore } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
+import { Form, Field, ErrorMessage } from "vee-validate"
+import * as yup from 'yup'
     export default {
       components: {
         Form,

@@ -6,8 +6,8 @@ import BookList from "./views/BookList.vue"
 import AddBook from "./views/AddBook.vue"
 import AppCart from "./views/AppCart.vue"
 import AboutView from "./views/AboutView.vue"
-import { useDataStore } from './stores/store';
-import { mapActions } from 'pinia';
+import { useDataStore } from './stores/store'
+import { mapActions } from 'pinia'
 export default {
   components: {
     AppMenu,
@@ -48,6 +48,6 @@ export default {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 </style>

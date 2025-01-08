@@ -1,6 +1,6 @@
 <script>
-import { useDataStore } from '../stores/store';
-import { mapState } from 'pinia';
+import { useDataStore } from '../stores/store'
+import { mapState } from 'pinia'
 export default {
     props: {
         book: {
@@ -11,7 +11,7 @@ export default {
     computed: {
       ...mapState(useDataStore, ['cliteralFromCode'])
     },
-};
+}
 </script>
 
 <template>

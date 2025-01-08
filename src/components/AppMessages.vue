@@ -1,6 +1,6 @@
 <script>
-import { useDataStore } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
+import { useDataStore } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
 
 export default {
     computed: {
@@ -9,7 +9,7 @@ export default {
     methods: {
         ...mapActions(useDataStore, ['deleteMessage']),
     },
-};
+}
 </script>
 
 <template>
