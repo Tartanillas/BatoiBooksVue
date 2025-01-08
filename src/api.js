@@ -15,6 +15,7 @@ const books = {
     create: (book) => apiClient.post(`/books`, book),
     modify: (book) => apiClient.put(`/books/${book.id}`, book),
     delete: (id) => apiClient.delete(`/books/${id}`),
+    getBookByUserAndModule: (userId, moduleCode) => apiClient.get(`/books?userId=${userId}&moduleCode=${moduleCode}`)
 }
 
 const modules = {

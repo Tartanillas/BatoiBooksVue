@@ -18,7 +18,7 @@ export const useDataStore = defineStore('data', {
         totalDeLibrosEnCarrito() {
             return this.booksOnCart.length
         },
-        bookOnCart: (state) => (id) => state.booksOnCart.find(book => book.id === id)
+        bookOnCart: (state) => (id) => state.booksOnCart.find(book => book.id === id),
     },
     actions: {
         async populateBooks() {
@@ -39,9 +39,15 @@ export const useDataStore = defineStore('data', {
         },
         async addBook(book) {
             try {
-                const response = await api.books.create(book)
-                this.books.push(response.data)
-                this.addMessage('Libro añadido correctamente', 'success')
+                book.userId = 8
+                if(this.bookByUserAndModule(book.userId, book.moduleCode)) {
+                    this.addMessage('Ya tienes un libro con ese módulo', 'error')
+                    return false
+                } else {
+                    const response = await api.books.create(book)
+                    this.books.push(response.data)
+                    this.addMessage('Libro añadido correctamente', 'success')
+                }
             } catch (error) {
                 this.addMessage(error, 'error')
             }
@@ -119,5 +125,13 @@ export const useDataStore = defineStore('data', {
             this.updateLocalStorage()
             this.addMessage('Compra realizada correctamente', 'success')
         },
+        async bookByUserAndModule(userId, moduleCode) {
+            try {
+                const response = await api.books.getBookByUserAndModule(userId, moduleCode)
+                return response.data.length > 0
+            } catch (error) {
+                this.addMessage(error, 'error')
+            }
+        }
     }
 })

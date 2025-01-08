@@ -17,7 +17,7 @@ import * as yup from 'yup';
       },
       data() {
         const mySchema = yup.object({
-          idModule: yup.string('El módulo debe ser una cadena de texto').required('El módulo es obligatorio'),
+          moduleCode: yup.string('El módulo debe ser una cadena de texto').required('El módulo es obligatorio'),
           publisher: yup.string('La editorial debe ser una cadena de texto').required('La editorial es obligatoria'),
           price: yup.number('El precio debe ser numérico').min(0, 'El precio debe ser mayor o igual a 0').required('El precio es obligatorio'),
           pages: yup.number('El número de páginas debe ser numérico').min(0, 'El número de páginas debe ser mayor o igual a 0').integer('El número de páginas tiene que ser un número entero').required('El número de páginas es obligatorio'),
@@ -31,7 +31,7 @@ import * as yup from 'yup';
       watch: {
         id(newValue) {
           if (!newValue) {
-            this.book = []
+            this.book = {}
           } else {
             this.cargarLibro()
           }
@@ -39,11 +39,11 @@ import * as yup from 'yup';
       },
       methods: {
         ...mapActions(useDataStore, ['addBook', 'editBook', 'getBook']),
-        submitBook(values) {
+        submitBook() {
           if (!this.id) {
-            this.addBook(values)
+            this.addBook(this.book)
           } else {
-            this.editBook(values)
+            this.editBook(this.book)
           }
           this.redirectList()
         },
@@ -71,12 +71,12 @@ import * as yup from 'yup';
             Id: <Field type="text" name="idBook" readonly />
           </div>
           <div>
-            <label for="idModule">Módulo:</label>
-            <Field as="select" name="idModule" v-model="book.idModule">
+            <label for="moduleCode">Módulo:</label>
+            <Field as="select" name="moduleCode" v-model="book.moduleCode">
               <option value="">- Selecciona un módulo -</option>
               <option v-for="module in modules" :key="module.code" :value="module.code">{{ module.cliteral }}</option>
             </Field>
-            <ErrorMessage name="idModule" />
+            <ErrorMessage name="moduleCode" />
           </div>
 
           <div>
