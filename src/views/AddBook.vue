@@ -31,7 +31,7 @@ import * as yup from 'yup';
       watch: {
         id(newValue) {
           if (!newValue) {
-            this.book = {}
+            this.book = []
           } else {
             this.cargarLibro()
           }
@@ -72,7 +72,7 @@ import * as yup from 'yup';
           </div>
           <div>
             <label for="idModule">Módulo:</label>
-            <Field as="select" name="idModule" v-model="book.moduleCode">
+            <Field as="select" name="idModule" v-model="book.idModule">
               <option value="">- Selecciona un módulo -</option>
               <option v-for="module in modules" :key="module.code" :value="module.code">{{ module.cliteral }}</option>
             </Field>
@@ -107,7 +107,7 @@ import * as yup from 'yup';
 
           <div>
             <label for="comments">Comentarios:</label>
-            <Field as="textarea" id="comments" v-model="book.comments" />
+            <Field as="textarea" name="comments" v-model="book.comments" />
           </div>
           <button type="submit" v-if="!this.id">Añadir</button>
           <button type="submit" v-else>Editar</button>
